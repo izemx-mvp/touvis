@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppRecouvrementRouteImport } from './routes/app.recouvrement'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,28 +29,36 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppRecouvrementRoute = AppRecouvrementRouteImport.update({
+  id: '/recouvrement',
+  path: '/recouvrement',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/app/recouvrement': typeof AppRecouvrementRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app/recouvrement': typeof AppRecouvrementRoute
   '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/app/recouvrement': typeof AppRecouvrementRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/app' | '/app/'
+  fullPaths: '/' | '/app' | '/app/recouvrement' | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/app'
-  id: '__root__' | '/' | '/app' | '/app/'
+  to: '/' | '/app/recouvrement' | '/app'
+  id: '__root__' | '/' | '/app' | '/app/recouvrement' | '/app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -80,14 +89,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/recouvrement': {
+      id: '/app/recouvrement'
+      path: '/recouvrement'
+      fullPath: '/app/recouvrement'
+      preLoaderRoute: typeof AppRecouvrementRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
+  AppRecouvrementRoute: typeof AppRecouvrementRoute
   AppIndexRoute: typeof AppIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppRecouvrementRoute: AppRecouvrementRoute,
   AppIndexRoute: AppIndexRoute,
 }
 
