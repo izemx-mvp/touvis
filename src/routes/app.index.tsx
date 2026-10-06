@@ -32,7 +32,8 @@ function Dashboard() {
   const activeCamp = s.campaigns.filter((c) => c.status === "En cours").length;
 
   const invByStatus = ["À venir", "Proche échéance", "Échue", "En retard", "Relancée", "Payée"].map((st) => ({ name: st, value: s.invoices.filter((i) => i.status === st).length }));
-  const recov = MONTHS.map((m, i) => ({ m, recouvre: [410, 455, 390, 520, 610, 0][i] * 1000 + (i === 5 ? s.invoices.filter((x) => x.status === "Payée").reduce((a, x) => a + x.amount, 0) : 0), du: [620, 640, 590, 700, 760, 0][i] * 1000 + (i === 5 ? toCollect : 0) }));
+  const paidNow = s.invoices.filter((x) => x.status === "Payée").length;
+  const recov = MONTHS.map((m, i) => ({ m, recouvre: [410, 455, 390, 520, 610, 560 + paidNow * 12][i] * 1000, du: [620, 640, 590, 700, 760, 820][i] * 1000 }));
   const stockEvo = Array.from({ length: 12 }, (_, i) => ({ w: `S${i + 30}`, total: s.products.reduce((a, p) => a + p.history[i], 0) }));
   const convDays = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"].map((d, i) => ({ d, ia: [42, 51, 47, 60, 55, 28, 14][i], humain: [9, 12, 8, 14, 11, 4, 2][i] }));
   const split = [{ name: "IA", value: aiConv }, { name: "Humain", value: s.conversations.length - aiConv }];

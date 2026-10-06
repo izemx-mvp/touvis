@@ -12,7 +12,7 @@ import { COMMERCIAUX, type ConvStatus } from "@/lib/mock";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/app/conversations")({
-  validateSearch: (s: Record<string, unknown>) => ({ id: typeof s.id === "string" ? s.id : undefined }),
+  validateSearch: (s: Record<string, unknown>): { id?: string } => ({ id: typeof s["id"] === "string" ? (s["id"] as string) : undefined }),
   head: () => ({ meta: [{ title: "Conversations — TOUVIS AI" }, { name: "description", content: "Boîte de réception unifiée WhatsApp, email, web et réseaux sociaux." }, { property: "og:title", content: "Conversations — TOUVIS AI" }, { property: "og:description", content: "Conversations clients gérées par l'IA et vos équipes." }] }),
   component: Conversations,
 });

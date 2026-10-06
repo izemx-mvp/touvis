@@ -16,9 +16,24 @@ import { Route as AppAgentParametresRouteImport } from './routes/app.agent-param
 import { Route as AppConnaissancesRouteImport } from './routes/app.connaissances'
 import { Route as AppConversationsRouteImport } from './routes/app.conversations'
 import { Route as AppFaqRouteImport } from './routes/app.faq'
+import { Route as AppHistoriqueRouteImport } from './routes/app.historique'
+import { Route as AppNotificationsRouteImport } from './routes/app.notifications'
+import { Route as AppParametresRouteImport } from './routes/app.parametres'
 import { Route as AppRecouvrementRouteImport } from './routes/app.recouvrement'
+import { Route as AppRelancesRouteImport } from './routes/app.relances'
+import { Route as AppSageRouteImport } from './routes/app.sage'
 import { Route as AppServiceClientRouteImport } from './routes/app.service-client'
 import { Route as AppStocksRouteImport } from './routes/app.stocks'
+import { Route as AppUtilisateursRouteImport } from './routes/app.utilisateurs'
+import { Route as AppCampagnesIndexRouteImport } from './routes/app.campagnes.index'
+import { Route as AppCampagnesIdRouteImport } from './routes/app.campagnes.$id'
+import { Route as AppCampagnesNouvelleRouteImport } from './routes/app.campagnes.nouvelle'
+import { Route as AppClientsIndexRouteImport } from './routes/app.clients.index'
+import { Route as AppClientsIdRouteImport } from './routes/app.clients.$id'
+import { Route as AppDemandesIndexRouteImport } from './routes/app.demandes.index'
+import { Route as AppDemandesIdRouteImport } from './routes/app.demandes.$id'
+import { Route as AppDevisIndexRouteImport } from './routes/app.devis.index'
+import { Route as AppDevisIdRouteImport } from './routes/app.devis.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -55,9 +70,34 @@ const AppFaqRoute = AppFaqRouteImport.update({
   path: '/faq',
   getParentRoute: () => AppRoute,
 } as any)
+const AppHistoriqueRoute = AppHistoriqueRouteImport.update({
+  id: '/historique',
+  path: '/historique',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppNotificationsRoute = AppNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppParametresRoute = AppParametresRouteImport.update({
+  id: '/parametres',
+  path: '/parametres',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppRecouvrementRoute = AppRecouvrementRouteImport.update({
   id: '/recouvrement',
   path: '/recouvrement',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRelancesRoute = AppRelancesRouteImport.update({
+  id: '/relances',
+  path: '/relances',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSageRoute = AppSageRouteImport.update({
+  id: '/sage',
+  path: '/sage',
   getParentRoute: () => AppRoute,
 } as any)
 const AppServiceClientRoute = AppServiceClientRouteImport.update({
@@ -70,6 +110,56 @@ const AppStocksRoute = AppStocksRouteImport.update({
   path: '/stocks',
   getParentRoute: () => AppRoute,
 } as any)
+const AppUtilisateursRoute = AppUtilisateursRouteImport.update({
+  id: '/utilisateurs',
+  path: '/utilisateurs',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCampagnesIndexRoute = AppCampagnesIndexRouteImport.update({
+  id: '/campagnes/',
+  path: '/campagnes/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCampagnesIdRoute = AppCampagnesIdRouteImport.update({
+  id: '/campagnes/$id',
+  path: '/campagnes/$id',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCampagnesNouvelleRoute = AppCampagnesNouvelleRouteImport.update({
+  id: '/campagnes/nouvelle',
+  path: '/campagnes/nouvelle',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppClientsIndexRoute = AppClientsIndexRouteImport.update({
+  id: '/clients/',
+  path: '/clients/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppClientsIdRoute = AppClientsIdRouteImport.update({
+  id: '/clients/$id',
+  path: '/clients/$id',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDemandesIndexRoute = AppDemandesIndexRouteImport.update({
+  id: '/demandes/',
+  path: '/demandes/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDemandesIdRoute = AppDemandesIdRouteImport.update({
+  id: '/demandes/$id',
+  path: '/demandes/$id',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDevisIndexRoute = AppDevisIndexRouteImport.update({
+  id: '/devis/',
+  path: '/devis/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDevisIdRoute = AppDevisIdRouteImport.update({
+  id: '/devis/$id',
+  path: '/devis/$id',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -78,10 +168,25 @@ export interface FileRoutesByFullPath {
   '/app/connaissances': typeof AppConnaissancesRoute
   '/app/conversations': typeof AppConversationsRoute
   '/app/faq': typeof AppFaqRoute
+  '/app/historique': typeof AppHistoriqueRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/parametres': typeof AppParametresRoute
   '/app/recouvrement': typeof AppRecouvrementRoute
+  '/app/relances': typeof AppRelancesRoute
+  '/app/sage': typeof AppSageRoute
   '/app/service-client': typeof AppServiceClientRoute
   '/app/stocks': typeof AppStocksRoute
+  '/app/utilisateurs': typeof AppUtilisateursRoute
   '/app/': typeof AppIndexRoute
+  '/app/campagnes/$id': typeof AppCampagnesIdRoute
+  '/app/campagnes/nouvelle': typeof AppCampagnesNouvelleRoute
+  '/app/clients/$id': typeof AppClientsIdRoute
+  '/app/demandes/$id': typeof AppDemandesIdRoute
+  '/app/devis/$id': typeof AppDevisIdRoute
+  '/app/campagnes/': typeof AppCampagnesIndexRoute
+  '/app/clients/': typeof AppClientsIndexRoute
+  '/app/demandes/': typeof AppDemandesIndexRoute
+  '/app/devis/': typeof AppDevisIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -89,10 +194,25 @@ export interface FileRoutesByTo {
   '/app/connaissances': typeof AppConnaissancesRoute
   '/app/conversations': typeof AppConversationsRoute
   '/app/faq': typeof AppFaqRoute
+  '/app/historique': typeof AppHistoriqueRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/parametres': typeof AppParametresRoute
   '/app/recouvrement': typeof AppRecouvrementRoute
+  '/app/relances': typeof AppRelancesRoute
+  '/app/sage': typeof AppSageRoute
   '/app/service-client': typeof AppServiceClientRoute
   '/app/stocks': typeof AppStocksRoute
+  '/app/utilisateurs': typeof AppUtilisateursRoute
   '/app': typeof AppIndexRoute
+  '/app/campagnes/$id': typeof AppCampagnesIdRoute
+  '/app/campagnes/nouvelle': typeof AppCampagnesNouvelleRoute
+  '/app/clients/$id': typeof AppClientsIdRoute
+  '/app/demandes/$id': typeof AppDemandesIdRoute
+  '/app/devis/$id': typeof AppDevisIdRoute
+  '/app/campagnes': typeof AppCampagnesIndexRoute
+  '/app/clients': typeof AppClientsIndexRoute
+  '/app/demandes': typeof AppDemandesIndexRoute
+  '/app/devis': typeof AppDevisIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -102,10 +222,25 @@ export interface FileRoutesById {
   '/app/connaissances': typeof AppConnaissancesRoute
   '/app/conversations': typeof AppConversationsRoute
   '/app/faq': typeof AppFaqRoute
+  '/app/historique': typeof AppHistoriqueRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/parametres': typeof AppParametresRoute
   '/app/recouvrement': typeof AppRecouvrementRoute
+  '/app/relances': typeof AppRelancesRoute
+  '/app/sage': typeof AppSageRoute
   '/app/service-client': typeof AppServiceClientRoute
   '/app/stocks': typeof AppStocksRoute
+  '/app/utilisateurs': typeof AppUtilisateursRoute
   '/app/': typeof AppIndexRoute
+  '/app/campagnes/$id': typeof AppCampagnesIdRoute
+  '/app/campagnes/nouvelle': typeof AppCampagnesNouvelleRoute
+  '/app/clients/$id': typeof AppClientsIdRoute
+  '/app/demandes/$id': typeof AppDemandesIdRoute
+  '/app/devis/$id': typeof AppDevisIdRoute
+  '/app/campagnes/': typeof AppCampagnesIndexRoute
+  '/app/clients/': typeof AppClientsIndexRoute
+  '/app/demandes/': typeof AppDemandesIndexRoute
+  '/app/devis/': typeof AppDevisIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -116,10 +251,25 @@ export interface FileRouteTypes {
     | '/app/connaissances'
     | '/app/conversations'
     | '/app/faq'
+    | '/app/historique'
+    | '/app/notifications'
+    | '/app/parametres'
     | '/app/recouvrement'
+    | '/app/relances'
+    | '/app/sage'
     | '/app/service-client'
     | '/app/stocks'
+    | '/app/utilisateurs'
     | '/app/'
+    | '/app/campagnes/$id'
+    | '/app/campagnes/nouvelle'
+    | '/app/clients/$id'
+    | '/app/demandes/$id'
+    | '/app/devis/$id'
+    | '/app/campagnes/'
+    | '/app/clients/'
+    | '/app/demandes/'
+    | '/app/devis/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -127,10 +277,25 @@ export interface FileRouteTypes {
     | '/app/connaissances'
     | '/app/conversations'
     | '/app/faq'
+    | '/app/historique'
+    | '/app/notifications'
+    | '/app/parametres'
     | '/app/recouvrement'
+    | '/app/relances'
+    | '/app/sage'
     | '/app/service-client'
     | '/app/stocks'
+    | '/app/utilisateurs'
     | '/app'
+    | '/app/campagnes/$id'
+    | '/app/campagnes/nouvelle'
+    | '/app/clients/$id'
+    | '/app/demandes/$id'
+    | '/app/devis/$id'
+    | '/app/campagnes'
+    | '/app/clients'
+    | '/app/demandes'
+    | '/app/devis'
   id:
     | '__root__'
     | '/'
@@ -139,10 +304,25 @@ export interface FileRouteTypes {
     | '/app/connaissances'
     | '/app/conversations'
     | '/app/faq'
+    | '/app/historique'
+    | '/app/notifications'
+    | '/app/parametres'
     | '/app/recouvrement'
+    | '/app/relances'
+    | '/app/sage'
     | '/app/service-client'
     | '/app/stocks'
+    | '/app/utilisateurs'
     | '/app/'
+    | '/app/campagnes/$id'
+    | '/app/campagnes/nouvelle'
+    | '/app/clients/$id'
+    | '/app/demandes/$id'
+    | '/app/devis/$id'
+    | '/app/campagnes/'
+    | '/app/clients/'
+    | '/app/demandes/'
+    | '/app/devis/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -201,11 +381,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppFaqRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/historique': {
+      id: '/app/historique'
+      path: '/historique'
+      fullPath: '/app/historique'
+      preLoaderRoute: typeof AppHistoriqueRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/notifications': {
+      id: '/app/notifications'
+      path: '/notifications'
+      fullPath: '/app/notifications'
+      preLoaderRoute: typeof AppNotificationsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/parametres': {
+      id: '/app/parametres'
+      path: '/parametres'
+      fullPath: '/app/parametres'
+      preLoaderRoute: typeof AppParametresRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/recouvrement': {
       id: '/app/recouvrement'
       path: '/recouvrement'
       fullPath: '/app/recouvrement'
       preLoaderRoute: typeof AppRecouvrementRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/relances': {
+      id: '/app/relances'
+      path: '/relances'
+      fullPath: '/app/relances'
+      preLoaderRoute: typeof AppRelancesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/sage': {
+      id: '/app/sage'
+      path: '/sage'
+      fullPath: '/app/sage'
+      preLoaderRoute: typeof AppSageRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/service-client': {
@@ -222,6 +437,76 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppStocksRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/utilisateurs': {
+      id: '/app/utilisateurs'
+      path: '/utilisateurs'
+      fullPath: '/app/utilisateurs'
+      preLoaderRoute: typeof AppUtilisateursRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/campagnes/': {
+      id: '/app/campagnes/'
+      path: '/campagnes'
+      fullPath: '/app/campagnes/'
+      preLoaderRoute: typeof AppCampagnesIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/campagnes/$id': {
+      id: '/app/campagnes/$id'
+      path: '/campagnes/$id'
+      fullPath: '/app/campagnes/$id'
+      preLoaderRoute: typeof AppCampagnesIdRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/campagnes/nouvelle': {
+      id: '/app/campagnes/nouvelle'
+      path: '/campagnes/nouvelle'
+      fullPath: '/app/campagnes/nouvelle'
+      preLoaderRoute: typeof AppCampagnesNouvelleRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/clients/': {
+      id: '/app/clients/'
+      path: '/clients'
+      fullPath: '/app/clients/'
+      preLoaderRoute: typeof AppClientsIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/clients/$id': {
+      id: '/app/clients/$id'
+      path: '/clients/$id'
+      fullPath: '/app/clients/$id'
+      preLoaderRoute: typeof AppClientsIdRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/demandes/': {
+      id: '/app/demandes/'
+      path: '/demandes'
+      fullPath: '/app/demandes/'
+      preLoaderRoute: typeof AppDemandesIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/demandes/$id': {
+      id: '/app/demandes/$id'
+      path: '/demandes/$id'
+      fullPath: '/app/demandes/$id'
+      preLoaderRoute: typeof AppDemandesIdRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/devis/': {
+      id: '/app/devis/'
+      path: '/devis'
+      fullPath: '/app/devis/'
+      preLoaderRoute: typeof AppDevisIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/devis/$id': {
+      id: '/app/devis/$id'
+      path: '/devis/$id'
+      fullPath: '/app/devis/$id'
+      preLoaderRoute: typeof AppDevisIdRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
@@ -230,10 +515,25 @@ interface AppRouteChildren {
   AppConnaissancesRoute: typeof AppConnaissancesRoute
   AppConversationsRoute: typeof AppConversationsRoute
   AppFaqRoute: typeof AppFaqRoute
+  AppHistoriqueRoute: typeof AppHistoriqueRoute
+  AppNotificationsRoute: typeof AppNotificationsRoute
+  AppParametresRoute: typeof AppParametresRoute
   AppRecouvrementRoute: typeof AppRecouvrementRoute
+  AppRelancesRoute: typeof AppRelancesRoute
+  AppSageRoute: typeof AppSageRoute
   AppServiceClientRoute: typeof AppServiceClientRoute
   AppStocksRoute: typeof AppStocksRoute
+  AppUtilisateursRoute: typeof AppUtilisateursRoute
   AppIndexRoute: typeof AppIndexRoute
+  AppCampagnesIdRoute: typeof AppCampagnesIdRoute
+  AppCampagnesNouvelleRoute: typeof AppCampagnesNouvelleRoute
+  AppClientsIdRoute: typeof AppClientsIdRoute
+  AppDemandesIdRoute: typeof AppDemandesIdRoute
+  AppDevisIdRoute: typeof AppDevisIdRoute
+  AppCampagnesIndexRoute: typeof AppCampagnesIndexRoute
+  AppClientsIndexRoute: typeof AppClientsIndexRoute
+  AppDemandesIndexRoute: typeof AppDemandesIndexRoute
+  AppDevisIndexRoute: typeof AppDevisIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
@@ -241,10 +541,25 @@ const AppRouteChildren: AppRouteChildren = {
   AppConnaissancesRoute: AppConnaissancesRoute,
   AppConversationsRoute: AppConversationsRoute,
   AppFaqRoute: AppFaqRoute,
+  AppHistoriqueRoute: AppHistoriqueRoute,
+  AppNotificationsRoute: AppNotificationsRoute,
+  AppParametresRoute: AppParametresRoute,
   AppRecouvrementRoute: AppRecouvrementRoute,
+  AppRelancesRoute: AppRelancesRoute,
+  AppSageRoute: AppSageRoute,
   AppServiceClientRoute: AppServiceClientRoute,
   AppStocksRoute: AppStocksRoute,
+  AppUtilisateursRoute: AppUtilisateursRoute,
   AppIndexRoute: AppIndexRoute,
+  AppCampagnesIdRoute: AppCampagnesIdRoute,
+  AppCampagnesNouvelleRoute: AppCampagnesNouvelleRoute,
+  AppClientsIdRoute: AppClientsIdRoute,
+  AppDemandesIdRoute: AppDemandesIdRoute,
+  AppDevisIdRoute: AppDevisIdRoute,
+  AppCampagnesIndexRoute: AppCampagnesIndexRoute,
+  AppClientsIndexRoute: AppClientsIndexRoute,
+  AppDemandesIndexRoute: AppDemandesIndexRoute,
+  AppDevisIndexRoute: AppDevisIndexRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
