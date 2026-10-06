@@ -1,3 +1,3 @@
-- [ ] Retirer les cartes de configuration et d’activation des agents du dashboard.
-- [ ] Retirer l’interrupteur d’activation du Service client et y intégrer les paramètres existants.
-- [ ] Vérifier les pages et l’enregistrement des paramètres.
+- [x] Retirer les cartes de configuration et d’activation des agents du dashboard.
+- [x] Retirer l’interrupteur d’activation du Service client et y intégrer les paramètres existants.
+- [x] Vérifier les pages et l’enregistrement des paramètres.
