@@ -10,33 +10,144 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteImport } from './routes/app'
+import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppAgentParametresRouteImport } from './routes/app.agent-parametres'
+import { Route as AppConnaissancesRouteImport } from './routes/app.connaissances'
+import { Route as AppConversationsRouteImport } from './routes/app.conversations'
+import { Route as AppFaqRouteImport } from './routes/app.faq'
+import { Route as AppRecouvrementRouteImport } from './routes/app.recouvrement'
+import { Route as AppServiceClientRouteImport } from './routes/app.service-client'
+import { Route as AppStocksRouteImport } from './routes/app.stocks'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAgentParametresRoute = AppAgentParametresRouteImport.update({
+  id: '/agent-parametres',
+  path: '/agent-parametres',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppConnaissancesRoute = AppConnaissancesRouteImport.update({
+  id: '/connaissances',
+  path: '/connaissances',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppConversationsRoute = AppConversationsRouteImport.update({
+  id: '/conversations',
+  path: '/conversations',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppFaqRoute = AppFaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRecouvrementRoute = AppRecouvrementRouteImport.update({
+  id: '/recouvrement',
+  path: '/recouvrement',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppServiceClientRoute = AppServiceClientRouteImport.update({
+  id: '/service-client',
+  path: '/service-client',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppStocksRoute = AppStocksRouteImport.update({
+  id: '/stocks',
+  path: '/stocks',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/app/agent-parametres': typeof AppAgentParametresRoute
+  '/app/connaissances': typeof AppConnaissancesRoute
+  '/app/conversations': typeof AppConversationsRoute
+  '/app/faq': typeof AppFaqRoute
+  '/app/recouvrement': typeof AppRecouvrementRoute
+  '/app/service-client': typeof AppServiceClientRoute
+  '/app/stocks': typeof AppStocksRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app/agent-parametres': typeof AppAgentParametresRoute
+  '/app/connaissances': typeof AppConnaissancesRoute
+  '/app/conversations': typeof AppConversationsRoute
+  '/app/faq': typeof AppFaqRoute
+  '/app/recouvrement': typeof AppRecouvrementRoute
+  '/app/service-client': typeof AppServiceClientRoute
+  '/app/stocks': typeof AppStocksRoute
+  '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/app/agent-parametres': typeof AppAgentParametresRoute
+  '/app/connaissances': typeof AppConnaissancesRoute
+  '/app/conversations': typeof AppConversationsRoute
+  '/app/faq': typeof AppFaqRoute
+  '/app/recouvrement': typeof AppRecouvrementRoute
+  '/app/service-client': typeof AppServiceClientRoute
+  '/app/stocks': typeof AppStocksRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/app/agent-parametres'
+    | '/app/connaissances'
+    | '/app/conversations'
+    | '/app/faq'
+    | '/app/recouvrement'
+    | '/app/service-client'
+    | '/app/stocks'
+    | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/app/agent-parametres'
+    | '/app/connaissances'
+    | '/app/conversations'
+    | '/app/faq'
+    | '/app/recouvrement'
+    | '/app/service-client'
+    | '/app/stocks'
+    | '/app'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/app/agent-parametres'
+    | '/app/connaissances'
+    | '/app/conversations'
+    | '/app/faq'
+    | '/app/recouvrement'
+    | '/app/service-client'
+    | '/app/stocks'
+    | '/app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +159,99 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/agent-parametres': {
+      id: '/app/agent-parametres'
+      path: '/agent-parametres'
+      fullPath: '/app/agent-parametres'
+      preLoaderRoute: typeof AppAgentParametresRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/connaissances': {
+      id: '/app/connaissances'
+      path: '/connaissances'
+      fullPath: '/app/connaissances'
+      preLoaderRoute: typeof AppConnaissancesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/conversations': {
+      id: '/app/conversations'
+      path: '/conversations'
+      fullPath: '/app/conversations'
+      preLoaderRoute: typeof AppConversationsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/faq': {
+      id: '/app/faq'
+      path: '/faq'
+      fullPath: '/app/faq'
+      preLoaderRoute: typeof AppFaqRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/recouvrement': {
+      id: '/app/recouvrement'
+      path: '/recouvrement'
+      fullPath: '/app/recouvrement'
+      preLoaderRoute: typeof AppRecouvrementRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/service-client': {
+      id: '/app/service-client'
+      path: '/service-client'
+      fullPath: '/app/service-client'
+      preLoaderRoute: typeof AppServiceClientRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/stocks': {
+      id: '/app/stocks'
+      path: '/stocks'
+      fullPath: '/app/stocks'
+      preLoaderRoute: typeof AppStocksRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppAgentParametresRoute: typeof AppAgentParametresRoute
+  AppConnaissancesRoute: typeof AppConnaissancesRoute
+  AppConversationsRoute: typeof AppConversationsRoute
+  AppFaqRoute: typeof AppFaqRoute
+  AppRecouvrementRoute: typeof AppRecouvrementRoute
+  AppServiceClientRoute: typeof AppServiceClientRoute
+  AppStocksRoute: typeof AppStocksRoute
+  AppIndexRoute: typeof AppIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppAgentParametresRoute: AppAgentParametresRoute,
+  AppConnaissancesRoute: AppConnaissancesRoute,
+  AppConversationsRoute: AppConversationsRoute,
+  AppFaqRoute: AppFaqRoute,
+  AppRecouvrementRoute: AppRecouvrementRoute,
+  AppServiceClientRoute: AppServiceClientRoute,
+  AppStocksRoute: AppStocksRoute,
+  AppIndexRoute: AppIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
