@@ -15,3 +15,4 @@
 - `/` is the login screen; the authenticated shell is the `/app` layout route (sidebar, top bar, command bar, AI assistant, animated background).
 - List pages with detail children use `*.index.tsx` so the parent path is not a layout needing `<Outlet />`.
 - tsconfig has `noUncheckedIndexedAccess` and `exactOptionalPropertyTypes` off to keep mock-data-heavy UI code readable.
+- Service-agent settings use one shared form embedded in the service module and reused by the standalone settings route, so both entry points edit the same in-memory state.

@@ -1,19 +1,16 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, Funnel, FunnelChart, LabelList, Line, LineChart, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { AlertTriangle, Bot, Boxes, CheckCircle2, FileInput, FileText, Headset, Megaphone, MessagesSquare, PackageX, Repeat, Settings2, Sparkles, Wallet, Receipt } from "lucide-react";
-import { toast } from "sonner";
+import { AlertTriangle, Bot, CheckCircle2, FileInput,  Megaphone, MessagesSquare, PackageX, Repeat, Sparkles, Wallet, Receipt } from "lucide-react";
 import { Kpi, Panel, PageHeader, StatusBadge, axis, chartTooltip } from "@/components/touvis/kit";
 import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
-import { useStore, update, stockStatus, log } from "@/lib/store";
+import { useStore, stockStatus } from "@/lib/store";
 import { mad, fDateTime } from "@/lib/format";
 
 export const Route = createFileRoute("/app/")({
-  head: () => ({ meta: [{ title: "Tableau de bord — TOUVIS AI" }, { name: "description", content: "Vue d'ensemble des 6 agents IA TOUVIS connectés à Sage." }, { property: "og:title", content: "Tableau de bord — TOUVIS AI" }, { property: "og:description", content: "KPI, alertes et activité des agents IA." }] }),
+  head: () => ({ meta: [{ title: "Tableau de bord — TOUVIS AI" }, { name: "description", content: "Vue d'ensemble des 6 agents IA TOUVIS connectés à Sage." }, { property: "og:title", content: "Tableau de bord — TOUVIS AI" }, { property: "og:description", content: "KPI, alertes et activité des agents IA." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
   component: Dashboard,
 });
 
-const AGENT_ICONS: Record<string, typeof Wallet> = { recouvrement: Wallet, stock: Boxes, service: Headset, devis: FileText, relance: Repeat, campagnes: Megaphone };
 const C = ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)", "var(--chart-5)", "var(--steel)"];
 const MONTHS = ["Mai", "Juin", "Juil", "Août", "Sept", "Oct"];
 
@@ -48,40 +45,6 @@ function Dashboard() {
     <div>
       <PageHeader eyebrow="Mardi 6 octobre 2026" title="Bonjour, voici votre plateforme TOUVIS AI" subtitle="Vos 6 agents IA travaillent ensemble autour de Sage. Voici leur activité en temps réel."
         actions={<Button className="bg-brand shadow-glow" onClick={() => nav({ to: "/app/notifications" })}><Sparkles />{s.notifications.filter((n) => !n.read).length} nouveautés</Button>} />
-
-      <div className="mb-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-        {s.agents.map((a) => {
-          const I = AGENT_ICONS[a.id];
-          return (
-            <div key={a.id} className="glass glass-hover group relative overflow-hidden rounded-2xl p-5">
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-brand opacity-60" />
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <div className="grid size-11 place-items-center rounded-xl border border-primary/25 bg-primary/10 text-primary"><I className="size-5" /></div>
-                  <div>
-                    <div className="font-display text-[15px] font-semibold">{a.name}</div>
-                    <StatusBadge status={a.active ? "Actif" : "Pause"} className="mt-1" />
-                  </div>
-                </div>
-                <Switch checked={a.active} aria-label="Activer l'agent" onCheckedChange={(v) => { update((st) => { st.agents = st.agents.map((x) => (x.id === a.id ? { ...x, active: v } : x)); log(st, { agent: a.name, module: "Agents", action: v ? "Agent activé" : "Agent mis en pause" }); }); toast.success(`${a.name} ${v ? "activé" : "en pause"}`); }} />
-              </div>
-              <p className="mt-3 text-sm text-muted-foreground">{a.description}</p>
-              <div className="mt-4 grid grid-cols-2 gap-3">
-                <div className="rounded-xl border border-border bg-secondary/30 p-2.5"><div className="text-[11px] text-muted-foreground">Tâches effectuées</div><div className="font-display text-lg font-semibold">{a.tasks.toLocaleString("fr-FR")}</div></div>
-                <div className="rounded-xl border border-border bg-secondary/30 p-2.5">
-                  <div className="text-[11px] text-muted-foreground">Taux de réussite</div>
-                  <div className="flex items-center gap-2"><span className="font-display text-lg font-semibold">{a.success}%</span><div className="h-1.5 flex-1 overflow-hidden rounded-full bg-secondary"><div className="h-full rounded-full bg-brand" style={{ width: `${a.success}%` }} /></div></div>
-                </div>
-              </div>
-              <div className="mt-3 flex items-center gap-2 text-xs text-muted-foreground"><Bot className="size-3.5 text-primary" />{a.recent}</div>
-              <div className="mt-4 flex gap-2">
-                <Button size="sm" className="flex-1" onClick={() => nav({ to: a.route })}>Voir l'agent</Button>
-                <Button size="sm" variant="outline" className="bg-transparent" onClick={() => nav({ to: a.configRoute })}><Settings2 />Configurer</Button>
-              </div>
-            </div>
-          );
-        })}
-      </div>
 
       <div className="mb-6 grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-5">
         <Kpi label="Factures impayées" value={unpaid.length} icon={<Receipt />} tone="red" to="/app/recouvrement" />
