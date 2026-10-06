@@ -105,9 +105,9 @@ function Topbar({ onSearch }: { onSearch: () => void }) {
         <DropdownMenu>
           <DropdownMenuTrigger asChild><Button size="sm" className="hidden gap-1.5 sm:inline-flex"><Zap />Actions rapides</Button></DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56">
-            <DropdownMenuItem onSelect={() => nav({ to: "/app/devis/nouveau" })}><Plus />Nouveau devis</DropdownMenuItem>
+            <DropdownMenuItem onSelect={() => nav({ to: "/app/devis/$id", params: { id: "nouveau" } })}><Plus />Nouveau devis</DropdownMenuItem>
             <DropdownMenuItem onSelect={() => nav({ to: "/app/campagnes/nouvelle" })}><Plus />Nouvelle campagne</DropdownMenuItem>
-            <DropdownMenuItem onSelect={() => nav({ to: "/app/clients", search: { new: true } as never })}><Plus />Nouveau client</DropdownMenuItem>
+            <DropdownMenuItem onSelect={() => nav({ to: "/app/clients" })}><Plus />Nouveau client</DropdownMenuItem>
             <DropdownMenuItem onSelect={() => nav({ to: "/app/faq" })}><Plus />Nouvelle FAQ</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem onSelect={sync}><RefreshCw />Synchroniser Sage</DropdownMenuItem>
